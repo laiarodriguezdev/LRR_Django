@@ -5,12 +5,12 @@ from django.template import loader
 
 # Create your views here.
 
-def index(request):
-    return render(request, 'index.html')
+def home(request):
+    return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
 
-def home(request):
-    professor = {"nom": "Oriol", "cognom": "Roca", "edat": 25}
-    return render(request, 'home.html', {'professor': professor})
+def index(request):
+    professor = {"nom": "Oscar", "cognom": "Rovira", "edat": 30}
+    return render(request, 'index.html', {'professor': professor})
