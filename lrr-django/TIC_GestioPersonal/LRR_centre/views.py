@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-
+from .form import PersonaFrom
+from .models import Usuari
 
 # Create your views here.
 
@@ -14,6 +15,11 @@ def about(request):
 def index(request):
     professor = {"nom": "Oscar", "cognom": "Rovira", "edat": 30}
     return render(request, 'index.html', {'professor': professor})
+
+def user_form(request):
+    form = PersonaFrom()
+    context = {'form':form}
+    return render(request, 'form.html',context)
 
 def student(request):
     # alumnes = [

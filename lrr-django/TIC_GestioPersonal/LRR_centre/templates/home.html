@@ -8,8 +8,9 @@
 <body>
     {% include "header/header.html" %}
 
-    <a href="/centre/teacher">Professorat</a>
-    <a href="/centre/student">Alumnes</a>
+    <a href="{% url 'user_form' %}">Afegir usuaris</a>
+    <a href="{% url 'teacher' %}">Professorat</a>
+    <a href="{% url 'student' %}">Alumnes</a>
     
     <h1>API ITIC BCN.</h1>
 </body>
