@@ -8,5 +8,30 @@
 <body>
     {% include "header/header.html" %}
     <h1>Informació Professorat TIC BCN (aplicació centre)</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Cognom</th>
+                <th>Edat</th>
+                <th>Rol</th>
+                <th>Cursos</th>
+                <th>Moduls</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in teachers %}
+            <tr>
+                <td>{{ teacher.nom }}</td>
+                <td>{{ teacher.cognom }}</td>
+                <td>{{ teacher.edat }}</td>
+                <td>{{ teacher.rol }}</td>
+                <td>{{ teacher.cursos }}</td>
+                <td>{{ teacher.moduls }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

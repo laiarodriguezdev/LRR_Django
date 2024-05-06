@@ -16,9 +16,15 @@ def index(request):
     return render(request, 'index.html', {'professor': professor})
 
 def student(request):
-    alumnat = {"nom": "Oscar", "cognom": "Rovira", "edat": 30}
-    return render(request, 'student.html', {'alumnat': alumnat})
+    alumnes = [
+        {'nom': 'Laia', 'cognom': 'Rodríguez',  'rol': 'Estudiant', 'link':'+INFO'},
+        {'nom': 'Harpreet', 'cognom': 'Kaur', 'rol': 'Estudiant',  'link':'+INFO'}
+    ]
+    return render(request, 'student.html', {'alumnes': alumnes})
 
 def teacher(request):
-    professor = {"nom": "Oscar", "cognom": "Rovira", "edat": 30}
-    return render(request, 'teacher.html', {'professor': professor})
+    teachers = [
+        {'nom': 'Oscar', 'cognom': 'Rovira', 'edat': 30, 'rol': 'Professor', 'cursos':'ASIX1A', 'moduls': 'M03, M07'},
+        {'nom': 'Juanma', 'cognom': 'Bel', 'edat': 43, 'rol': 'Professor', 'cursos':'DAW2A, DAW2B', 'moduls': 'M05, M06'}
+    ]
+    return render(request, 'teacher.html', {'teachers': teachers})

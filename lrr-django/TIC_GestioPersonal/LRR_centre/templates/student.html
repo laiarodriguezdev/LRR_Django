@@ -8,6 +8,25 @@
 <body>
     {% include "header/header.html" %}
     <h1>Informació Alumnat TIC BCN (aplicació centre)</h1>
-    <h3>{{ alumnat.nom }}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Cognom</th>
+                <th>Rol</th>
+                <th>Més informació</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumne in alumnes %}
+            <tr>
+                <td>{{ alumne.nom }}</td>
+                <td>{{ alumne.cognom }}</td>
+                <td>{{ alumne.rol }}</td>
+                <td><a>{{ alumne.link }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
