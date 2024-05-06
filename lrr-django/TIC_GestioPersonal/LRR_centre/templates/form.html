@@ -1,12 +1,16 @@
 {% block content %}
     <h1>Formulari</h1>
 
+    <style>
+        ul{display: none!important;}
+    </style>
+
     <form action="" method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit">
     </form>
 
-    <a href="{% url 'index' %}">Index</a>
+    <a href="{% url 'home' %}">Index</a>
 
 {% endblock %}

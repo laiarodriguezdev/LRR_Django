@@ -1,14 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laia Rodríguez Ramos</title>
-</head>
-<body>
-    {% include "header/header.html" %}
-    <h1>Informació Alumnat TIC BCN (aplicació centre)</h1>
-    
-    
-</body>
-</html>
+
+    {% extends 'index.html' %}
+    {% block content %}
+        <h1>Informació Alumnat TIC BCN (aplicació centre)</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOM</th>
+                    <th>COGNOM</th>
+                    <th>EDAT</th>
+                    <th>ROL</th>
+                    <th>CORREU</th>
+                    <th>ASSIGNATURES</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for alumne in alumnes %}
+                <tr>
+                    <td>{{ alumne.id }}</td>
+                    <td>{{ alumne.nom }}</td>
+                    <td>{{ alumne.cognom }}</td>
+                    <td>{{ alumne.edat }}</td>
+                    <td>{{ alumne.rol}}</td>
+                    <td>{{ alumne.correu }}</td>                        
+                    <td>{{ alumne.assignatures }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'home' %}"> Torna </a>
+    {% endblock %}

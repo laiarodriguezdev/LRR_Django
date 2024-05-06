@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .form import PersonaFrom
@@ -17,16 +17,21 @@ def index(request):
     return render(request, 'index.html', {'professor': professor})
 
 def user_form(request):
-    form = PersonaFrom()
-    context = {'form':form}
-    return render(request, 'form.html',context)
+    form = PersonaFrom(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+    context = {'form': form }
+    return render(request, 'form.html', context)
 
 def student(request):
     # alumnes = [
     #     {'nom': 'Laia', 'cognom': 'Rodríguez',  'rol': 'Estudiant', 'link':'+INFO'},
     #     {'nom': 'Harpreet', 'cognom': 'Kaur', 'rol': 'Estudiant',  'link':'+INFO'}
     # ]
-    return render(request, 'student.html')
+    alumnes = Usuari.objects.filter(rol__nom='alumne') #AQUI TINC ALGO QUE NO ESTÁ REFINAT.
+    context = {'alumnes': alumnes}    
+    return render(request, 'student.html', context)
 
 def teacher(request):
     # teachers = [
