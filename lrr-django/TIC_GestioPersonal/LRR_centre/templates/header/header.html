@@ -6,6 +6,16 @@
     <title>Laia Rodríguez Ramos</title>
 </head>
 <body>
-    <nav style="background-color: rgba(96, 226, 226, 0.466);">Navbar - Laia Rodríguez</nav>
+    <nav style="background-color: rgba(96, 226, 226, 0.466);font-size:16px;margin: auto;text-align: center;">
+        <div>
+            <h4>LAIA RODRÍGUEZ RAMOS</h4>
+        </div>
+        <div>NAVEGACIÓ</div>
+        <div>
+        <a href="{% url 'user_form' %}">Afegir usuaris</a>
+        <a href="{% url 'teacher' %}">Professorat</a>
+        <a href="{% url 'student' %}">Alumnes</a>
+        </div>
+    </nav>
 </body>
 </html>

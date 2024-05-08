@@ -1,14 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laia Rodríguez Ramos</title>
-</head>
-<body>
-    {% include "header/header.html" %}
-    <h1>Informació Professorat TIC BCN (aplicació centre)</h1>
 
-    
-</body>
-</html>
+{% extends 'index.html' %}
+{% block content %}
+    <style>
+        h1{text-align: center;}
+        table{
+            background-color:#b1b1b1;
+            border:1px solid grey;
+            margin: auto;
+            padding: 2px;
+        }
+        thead th{
+            gap: 20px;
+            border-bottom: 2px solid rgb(123, 228, 149);
+            text-align: center;
+        }
+        tbody {
+            background-color: rgb(71, 71, 71);
+            gap: 20px;
+            text-align: center;
+            color: #ccc;
+        }
+        table a{
+                color: #ccc !important;
+        }
+    </style>
+
+    <h1>Informació Professors TIC BCN (aplicació centre)</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOM</th>
+                <th>COGNOM</th>
+                <th>EDAT</th>
+                <th>ROL</th>
+                <th>CORREU</th>
+                <th>ASSIGNATURES</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for professor in professors %}
+            <tr>
+                <td>{{ professor.id }}</td>
+                <td>{{ professor.nom }}</td>
+                <td>{{ professor.cognom }}</td>
+                <td>{{ professor.edat }}</td>
+                <td>{{ professor.rol}}</td>
+                <td>{{ professor.correu }}</td>                        
+                <td>{{ professor.assignatures }}</td>
+                <td><a href="{% url 'update-user' professor.id %}">EDIT</a></td>
+                <td><a href="{% url 'delete-user' professor.id %}">ELIMINA</a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

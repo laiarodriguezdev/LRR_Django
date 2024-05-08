@@ -13,8 +13,7 @@ def about(request):
     return render(request, 'about.html')
 
 def index(request):
-    professor = {"nom": "Oscar", "cognom": "Rovira", "edat": 30}
-    return render(request, 'index.html', {'professor': professor})
+    return render(request, 'index.html')
 
 def user_form(request):
     form = PersonaFrom(request.POST)
@@ -29,7 +28,7 @@ def student(request):
     #     {'nom': 'Laia', 'cognom': 'Rodríguez',  'rol': 'Estudiant', 'link':'+INFO'},
     #     {'nom': 'Harpreet', 'cognom': 'Kaur', 'rol': 'Estudiant',  'link':'+INFO'}
     # ]
-    alumnes = Usuari.objects.filter(rol__nom='alumne') #AQUI TINC ALGO QUE NO ESTÁ REFINAT.
+    alumnes = Usuari.objects.filter(rol__nom='alumne')
     context = {'alumnes': alumnes}    
     return render(request, 'student.html', context)
 
@@ -38,4 +37,29 @@ def teacher(request):
     #     {'nom': 'Oscar', 'cognom': 'Rovira', 'edat': 30, 'rol': 'Professor', 'cursos':'ASIX1A', 'moduls': 'M03, M07'},
     #     {'nom': 'Juanma', 'cognom': 'Bel', 'edat': 43, 'rol': 'Professor', 'cursos':'DAW2A, DAW2B', 'moduls': 'M05, M06'}
     # ]
-    return render(request, 'teacher.html')
+    professors = Usuari.objects.filter(rol__nom='professor')
+    context = {'professors': professors}    
+    return render(request, 'teacher.html', context)
+
+def update_user(request, pk):
+    user = Usuari.objects.get(id = pk)
+    form = PersonaFrom(instance=user)
+    
+    if request.method == 'POST':
+        form = PersonaFrom(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    
+    context = {'form':form}
+    return render(request, 'form.html', context)
+
+def delete_user(request, pk):
+    user = Usuari.objects.get(id = pk)
+    
+    if request.method == 'POST':
+        user.delete()
+        return redirect('home')
+    
+    context = {'object':user}
+    return render(request, 'delete_user.html', context)
